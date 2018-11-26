@@ -66,6 +66,26 @@ def get_season(d):
 
     elif month in summer:
         return 'summer'
-        
+
     else:
         return 'fall'
+
+def encode_response(s):
+    if s == 'Adoption':
+        return 0
+    elif s == 'Transfer':
+        return 1
+    elif s == 'Return to Owner':
+        return 2
+    elif s == 'Euthanasia':
+        return 3
+    elif s == 'Died':
+        return 4
+    elif s == 'Disposal':
+        return 5
+    elif s == 'Rto-Adopt':
+        return 6
+    elif s == 'Missing':
+        return 7
+    else:
+        return 8
