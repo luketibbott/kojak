@@ -69,6 +69,10 @@ groups = ['Herding','Herding','Hound','Sporting','Non-Sporting','Herding','Herdi
           'Hound','Sporting','Sporting','Sporting','Terrier','Terrier','Hound','Terrier','Sporting','Sporting',
           'Non-Sporting','Toy']
 
+dog_groups = {d:g for d, g in zip(breeds,groups)}
+dog_names = dog_groups.keys()
+dog_type = dog_groups.values()
+
 def get_days(s):
     # takes string s in format similar to "11 years" and returns an int that represents the number of days described in s
 
@@ -166,3 +170,16 @@ def cat_breed(s):
         return 'Long hair'
     else:
         return 'Short hair'
+
+def group_dogs(s):
+    mix = 0
+
+    if 'Mix' in s:
+        mix = 1
+        s = s[:-4]
+
+    if s in dog_groups.keys():
+        return dog_groups[s]
+
+    else:
+        pass
