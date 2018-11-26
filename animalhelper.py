@@ -89,3 +89,9 @@ def encode_response(s):
         return 7
     else:
         return 8
+
+def mixed(s):
+    if 'mix' in s:
+        return 1
+    else:
+        return 0
