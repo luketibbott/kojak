@@ -90,8 +90,14 @@ def encode_response(s):
     else:
         return 8
 
-def mixed(s):
-    if 'mix' in s:
-        return 1
+def cat_breed(s):
+    s = s.lower()
+
+    if 'mix' not in s:
+        return 'Purebred'
+    elif 'medium hair' in s:
+        return 'Medium hair'
+    elif 'longhair' in s:
+        return 'Long hair'
     else:
-        return 0
+        return 'Short hair'
