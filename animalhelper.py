@@ -12,7 +12,7 @@ breeds = ['Blue Lacy','Queensland Heeler','Rhod Ridgeback','Retriever','Chinese 
           'American Staffordshire Terrier','American Water Spaniel','Anatolian Shepherd Dog',
           'Australian Cattle Dog','Australian Shepherd','Australian Terrier','Basenji','Basset Hound',
           'Beagle','Bearded Collie','Beauceron','Bedlington Terrier','Belgian Malinois','Belgian Sheepdog',
-          'Belgian Tervuren','Bergamasco','Berger Picard','Bernese Mountain Dog','Bichon Fris_',
+          'Belgian Tervuren','Bergamasco','Berger Picard','Bernese Mountain Dog','Bichon Fris',
           'Black and Tan Coonhound','Black Russian Terrier','Bloodhound','Bluetick Coonhound','Boerboel',
           'Border Collie','Border Terrier','Borzoi','Boston Terrier','Bouvier des Flandres','Boxer',
           'Boykin Spaniel','Briard','Brittany','Brussels Griffon','Bull Terrier','Bull Terrier (Miniature)',
@@ -173,13 +173,21 @@ def cat_breed(s):
 
 def group_dogs(s):
     mix = 0
+    group = None
 
     if 'Mix' in s:
         mix = 1
         s = s[:-4]
 
     if s in dog_groups.keys():
-        return dog_groups[s]
+        group = dog_groups[s]
 
-    else:
-        pass
+    if '/' in s:
+        s = s.split('/')
+        mix = 1
+
+    for constituent in s:
+        if constituent in dog_groups.keys():
+            group = dog_groups[s]
+
+    return (group, mix)
