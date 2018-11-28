@@ -157,48 +157,34 @@ def group_dogs(s, m):
         return group
 
 def color(s):
-    standard_colors = ['White', 'Sable', 'Black', 'Brown', 'Tricolor',
-       'Yellow', 'Blue', 'Gray', 'Red']
+    standard_colors = {'White', 'Sable', 'Black', 'Brown', 'Tricolor',
+       'Yellow', 'Blue', 'Gray', 'Red'}
 
-    color_mapper = {'Tan': 'Yellow', 'Chocolate': 'Brown', 'Cream': 'White', 'Gold': 'Yellow', }
-
-       Tan
-Chocolate
-Buff
-Cream
-Gold
-Silver
-Fawn
-Apricot
-Liver
-Liver Tick
-Agouti
-Orange
-Ruddy
-
+    color_mapper = {'Tan': 'Yellow', 'Chocolate': 'Brown', 'Cream': 'White', 'Gold': 'Yellow', 'Silver': 'Gray',
+                    'Fawn': 'Brown', 'Apricot': 'White', 'Liver': 'White', 'Agouti': 'Brown', 'Orange': 'Red', 'Ruddy': 'Red'}
     result = None
 
     if '/' in s:
         s = s.split('/')
-        result = s[0]
-
-    if s in colors:
+        s = s[0]
         result = s
+
+    elif ' ' in s:
+        s = s.split(' ')
+        s = s[0]
+        result = s
+
+    if s in standard_colors:
+        result = s
+    
+    else:
+        result = color_mapper[s]
 
     s = s.split(' ')
 
-    if s == 'Liver':
-        result = 'White'
+    # Still haven't assigned result
+    if (result == None) and (s[0] in color_mapper.keys()):
+        result = color_mapper[s[0]]
 
-    if s == 'Agouti':
-        result = 'Brown'
-
-    if s == 'Ruddy':
-        result = 'Red'
-
-    if s == 'Buff':
-        result = 'Yellow'
-
-    if s == 'Chocolate'
+    return result
     
-
