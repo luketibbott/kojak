@@ -13,6 +13,14 @@ with open('dog_breeds.txt', 'r') as file:
 
 dog_groups = eval(dictionary_string)
 
+# We'll use this set and dictionary below to get a simple color for each animal
+standard_colors = {'White', 'Sable', 'Black', 'Brown', 'Tricolor',
+       'Yellow', 'Blue', 'Gray', 'Red'}
+
+color_mapper = {'Tan': 'Yellow', 'Chocolate': 'Brown', 'Cream': 'White', 'Gold': 'Yellow', 'Silver': 'Gray',
+                    'Fawn': 'Brown', 'Apricot': 'White', 'Liver': 'White', 'Agouti': 'Brown', 'Orange': 'Red',
+                    'Ruddy': 'Red', 'Buff': 'Brown'}
+
 def get_days(s):
     # takes string s in format similar to "11 years" and returns an int that represents the number of days described in s
 
@@ -156,35 +164,27 @@ def group_dogs(s, m):
     else:
         return group
 
-def color(s):
-    standard_colors = {'White', 'Sable', 'Black', 'Brown', 'Tricolor',
-       'Yellow', 'Blue', 'Gray', 'Red'}
-
-    color_mapper = {'Tan': 'Yellow', 'Chocolate': 'Brown', 'Cream': 'White', 'Gold': 'Yellow', 'Silver': 'Gray',
-                    'Fawn': 'Brown', 'Apricot': 'White', 'Liver': 'White', 'Agouti': 'Brown', 'Orange': 'Red', 'Ruddy': 'Red'}
-    result = None
-
-    if '/' in s:
-        s = s.split('/')
-        s = s[0]
-        result = s
-
-    elif ' ' in s:
-        s = s.split(' ')
-        s = s[0]
-        result = s
-
+def end_color(s):
+    # No manipulation needed -- color is already appropriately reduced
     if s in standard_colors:
-        result = s
-    
-    else:
-        result = color_mapper[s]
+        return s
+    # Map from specific color to more general color
+    elif s in color_mapper.keys():
+        return color_mapper[s]
+    # Failed to get a general color
+    return s
 
-    s = s.split(' ')
+def color(s):
+    result = end_color(s)
 
-    # Still haven't assigned result
-    if (result == None) and (s[0] in color_mapper.keys()):
-        result = color_mapper[s[0]]
-
+    # Color is buried in a statement with '/' or ' '
+    if result not in standard_colors:
+        if '/' in s:
+            s = s.split('/')[0]
+            result = end_color(s)
+        elif ' ' in s:
+            s = s.split(' ')[0]
+            result = end_color(s)
+        
     return result
     
