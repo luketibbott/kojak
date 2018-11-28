@@ -182,6 +182,8 @@ def color(s):
     if result not in standard_colors:
         if '/' in s:
             s = s.split('/')[0]
+            if ' ' in s:
+                s = s.split(' ')[0]
             result = end_color(s)
         elif ' ' in s:
             s = s.split(' ')[0]
