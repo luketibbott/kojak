@@ -119,18 +119,12 @@ def group_dogs(s):
         mix = 1
         s = s[:-4]
 
+    if '/' in s:
+        s = s.split('/')[0]
+        mix = 1
+        
     if s in dog_groups.keys():
         group = dog_groups[s]
-
-    if '/' in s:
-        s = s.split('/')
-        mix = 1
-
-    for constituent in s:
-        # Take first dog breed that appears in our groups and use that to group this mix
-        if constituent in dog_groups.keys():
-            group = dog_groups[constituent]
-            break
         
     # Pit bulls are not recognized by the AKC but make up 14,000 observations in our dataset
     if ('Pit Bull' in s) or ('Staffordshire Terrier' in s):
@@ -142,6 +136,15 @@ def group_dogs(s):
     # Chihuahua is written slightly differently on the wikipedia page than in the data, so we catch it here
     if 'Chihuahua' in s:
         group = 'Toy'
+    # Queensland Heeler is another name for Australian Cattle Dog, which belongs to the herding group
+    if 'Queensland Heeler' in s:
+        group = 'Herding'
+    # Some entries are 'Plott hound', others are 'Plott'
+    if 'Plott' in s:
+        group = 'Hound'
+
+    if group == None:
+        group = s
     
 
     return (group, mix)
