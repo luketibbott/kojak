@@ -19,7 +19,8 @@ standard_colors = {'White', 'Sable', 'Black', 'Brown', 'Tricolor',
 
 color_mapper = {'Tan': 'Yellow', 'Chocolate': 'Brown', 'Cream': 'White', 'Gold': 'Yellow', 'Silver': 'Gray',
                     'Fawn': 'Brown', 'Apricot': 'White', 'Liver': 'White', 'Agouti': 'Brown', 'Orange': 'Red',
-                    'Ruddy': 'Red', 'Buff': 'Brown'}
+                    'Ruddy': 'Red', 'Buff': 'Brown', 'Calico': 'Tricolor', 'Torbie': 'Brown', 'Tortie': 'Brown',
+                    'Lynx': 'White', 'Seal': 'White', 'Lilac': 'Gray', 'Flame': 'White', 'Pink': 'Red'}
 
 def get_days(s):
     # takes string s in format similar to "11 years" and returns an int that represents the number of days described in s
