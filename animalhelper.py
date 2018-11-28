@@ -98,17 +98,23 @@ def encode_response(s):
     else:
         return 8
 
-def cat_breed(s):
+def cat_breed(s, m):
     s = s.lower()
-
-    if 'mix' not in s:
-        return 'Purebred'
-    elif 'medium hair' in s:
-        return 'Medium hair'
-    elif 'longhair' in s:
-        return 'Long hair'
+    mix = 1
+    group = None
+    if 'mix' in s:
+        mix = 0
+    if 'medium hair' in s:
+        group = 'medium hair'
+    if 'longhair' in s:
+        group = 'long hair'
     else:
-        return 'Short hair'
+        group = 'short hair'
+
+    if m == True:
+        return mix
+    else:
+        return group
 
 def group_dogs(s, m):
     mix = 0
@@ -149,3 +155,50 @@ def group_dogs(s, m):
         return mix
     else:
         return group
+
+def color(s):
+    standard_colors = ['White', 'Sable', 'Black', 'Brown', 'Tricolor',
+       'Yellow', 'Blue', 'Gray', 'Red']
+
+    color_mapper = {'Tan': 'Yellow', 'Chocolate': 'Brown', 'Cream': 'White', 'Gold': 'Yellow', }
+
+       Tan
+Chocolate
+Buff
+Cream
+Gold
+Silver
+Fawn
+Apricot
+Liver
+Liver Tick
+Agouti
+Orange
+Ruddy
+
+    result = None
+
+    if '/' in s:
+        s = s.split('/')
+        result = s[0]
+
+    if s in colors:
+        result = s
+
+    s = s.split(' ')
+
+    if s == 'Liver':
+        result = 'White'
+
+    if s == 'Agouti':
+        result = 'Brown'
+
+    if s == 'Ruddy':
+        result = 'Red'
+
+    if s == 'Buff':
+        result = 'Yellow'
+
+    if s == 'Chocolate'
+    
+
