@@ -65,7 +65,6 @@ def get_season(d):
     winter = {1, 2, 3}
     spring = {4, 5, 6}
     summer = {7, 8, 9}
-    fall = {10, 11, 12}
 
     if month in winter:
         return 'winter'
@@ -111,7 +110,7 @@ def cat_breed(s):
     else:
         return 'Short hair'
 
-def group_dogs(s):
+def group_dogs(s, m):
     mix = 0
     group = None
 
@@ -146,5 +145,7 @@ def group_dogs(s):
     if group == None:
         group = s
     
-
-    return (group, mix)
+    if m:
+        return mix
+    else:
+        return group
