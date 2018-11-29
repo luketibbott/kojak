@@ -109,10 +109,10 @@ def encode_response(s):
 
 def cat_breed(s, m):
     s = s.lower()
-    mix = 1
+    mix = 0
     group = None
-    if 'mix' in s:
-        mix = 0
+    if ('mix' in s) or ('domestic' in s):
+        mix = 1
     if 'medium hair' in s:
         group = 'medium hair'
     if 'longhair' in s:
@@ -182,12 +182,20 @@ def color(s):
     if result not in standard_colors:
         if '/' in s:
             s = s.split('/')[0]
+            # Case when space is on left side of '/'
             if ' ' in s:
                 s = s.split(' ')[0]
             result = end_color(s)
+        # Case when there's no '/', but color has a ' ' in it
         elif ' ' in s:
             s = s.split(' ')[0]
             result = end_color(s)
         
     return result
+
+def impute_fixed_status(s):
+    if s == 'unknown':
+        return 'fixed'
+    else:
+        return s
     
