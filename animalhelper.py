@@ -22,6 +22,9 @@ color_mapper = {'Tan': 'Yellow', 'Chocolate': 'Brown', 'Cream': 'White', 'Gold':
                     'Ruddy': 'Red', 'Buff': 'Brown', 'Calico': 'Tricolor', 'Torbie': 'Brown', 'Tortie': 'Brown',
                     'Lynx': 'White', 'Seal': 'White', 'Lilac': 'Gray', 'Flame': 'White', 'Pink': 'Red'}
 
+shade_mapper = {'Brown': 'Medium', 'Black': 'Dark', 'White': 'Light', 'Yellow': 'Light', 'Blue': 'Medium', 'Red': 'Light',
+                'Tricolor': 'Medium', 'Gray': 'Medium', 'Sable': 'Light'}
+
 def get_days(s):
     # takes string s in format similar to "11 years" and returns an int that represents the number of days described in s
 
@@ -198,4 +201,20 @@ def impute_fixed_status(s):
         return 'fixed'
     else:
         return s
+
+def is_sporting_dog(s):
+    cat_groups = {'short hair', 'long hair'}
+
+    if s == 'Sporting':
+        return 'Sporting'
+
+    if s in cat_groups:
+        return s
+
+    return 'Non-Sporting'
+
+def shade(s):
+    return shade_mapper[s]
+    
+    
     
