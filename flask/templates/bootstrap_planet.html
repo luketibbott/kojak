@@ -28,14 +28,57 @@
     <!-- Main Content -->
     <div class="container">
         <br>
+        
       <table>
-          <tr><td>Planet period: <input type="Number" id="period"> days</td></tr><br><br>
-          <tr><td>Impact parameter: <input type="Number" id="impact"></td></tr><br><br>
-          <tr><td>Duration of transit: <input type="Number" id="duration"> days</td></tr><br><br>
-          <tr><td>Stellar optical depth: <input type="Number" id="depth"></td></tr><br><br>
-          <tr><td>Planet radius: <input type="Number" id="prad"> Earth radii</td></tr><br><br>
-          <tr><td>Planet equilibrium temperature: <input type="Number" id="teq"> Kelvin</td></tr><br><br>
-          <tr><td>Insolation flux (as a ratio to that of Earth-Sun system): <input type="Number" id="insol"></td></tr><br><br>
+          <tr><td>Is this animal a cat or dog?
+                <select id="animal_type">
+                    <option value="Cat">Cat</option>
+                    <option value="Dog">Dog</option>
+                </select>
+          </td></tr>
+          <br><br>
+          <tr><td>How old is this animal in days?<input type="Number" id="age"></td></tr><br><br>
+          <tr><td>Is this animal fixed or intact?
+          <select id="fixed_status">
+              <option value="Intact">Intact</option>
+              <option value="Fixed">Fixed</option>
+          </select>></td></tr>
+          <br><br>
+          <tr><td>Which of the following groups best describes this animal?
+            <select id="group">
+                <option value="short hair">Short hair</option>
+                <option value="long hair">Long hair</option>
+                <option value="Terrier">Terrier</option>
+                <option value="Sporting">Sporting</option>
+                <option value="Herding">Herding</option>
+                <option value="Working">Working</option>
+                <option value="Hound">Hound</option>
+                <option value="Non-Sporting">Non-Sporting</option>
+                <option value="long hair">Long hair</option>
+            </select>></td></tr>
+          <br><br>
+          <tr><td>What condition best describes this animal?
+            <select id="intake_condition">
+              <option value="Normal">Normal</option>
+              <option value="Sick">Sick</option>
+              <option value="Injured">Injured</option>
+              <option value="Nursing">Nursing</option>
+          </select>></td></tr>
+          <br><br>
+          <tr><td>In what season will this animal be brought to the shelter?
+              <select id="season">
+                  <option value="spring">Spring</option>
+                  <option value="fall">Fall</option>
+                  <option value="winter">Winter</option>
+                  <option value="summer">Summer</option>
+              </select>
+          </td></tr>
+          <br><br>
+          <tr><td>Which of the following reasons best describes why the animal is being brought to the shelter?
+              <select id="intake_type">
+                <option value=
+              </select>></td></tr>
+              <br><br>
           <tr><td>Model signal to noise ratio: <input type="Number" id="model_snr"></td></tr><br><br>
       </table>
       <div>

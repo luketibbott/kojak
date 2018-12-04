@@ -1,5 +1,5 @@
 from flask import Flask, abort, request, render_template, jsonify
-from api import predict_planet
+from api import predict_animal
 
 app = Flask('ShelterAnimalApp')
 

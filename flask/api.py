@@ -7,15 +7,15 @@ name_freqs = pickle.load(open('../name_freqs.pkl', 'rb'))
 
 
 example = {
-    'age': 1700,
-    'animal_type': 'cat',
+    'age': 3000,
+    'animal_type': 'dog',
     'fixed': 'intact',
-    'group': 'long hair',
-    'intake_condition': 'sick',
+    'group': 'Sporting',
+    'intake_condition': 'Normal',
     'season': 'winter',
-    'intake_type': 'surrender by owner',
+    'intake_type': 'Owner Surrender',
     'hour_in': 11,
-    'name': 'bella'
+    'name': 'ajklsdfhkjlsahdf'
 }
 
 def predict_animal(features):
