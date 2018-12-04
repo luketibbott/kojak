@@ -1,0 +1,92 @@
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- specifically for fancy sliders, like fare -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.min.css'/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+      <h1>What are the chances of a shelter cat or dog being adopted?</h1>
+      <p>When bringing an animal in to a shelter, it's natural to wonder whether it will be adopted or not.
+         Despite being a morbid question, it's important for both people bringing animals in and shelters to get an educated
+         guess as to the success or failure of adoption for a given an animal. This Flask app aims to provide such an educated guess.
+      </p>
+    </div>
+
+    <!-- Use navbar just as a visual divider -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    </nav>
+
+
+    <!-- Main Content -->
+    <div class="container">
+        <br>
+      <table>
+          <tr><td>Planet period: <input type="Number" id="period"> days</td></tr><br><br>
+          <tr><td>Impact parameter: <input type="Number" id="impact"></td></tr><br><br>
+          <tr><td>Duration of transit: <input type="Number" id="duration"> days</td></tr><br><br>
+          <tr><td>Stellar optical depth: <input type="Number" id="depth"></td></tr><br><br>
+          <tr><td>Planet radius: <input type="Number" id="prad"> Earth radii</td></tr><br><br>
+          <tr><td>Planet equilibrium temperature: <input type="Number" id="teq"> Kelvin</td></tr><br><br>
+          <tr><td>Insolation flux (as a ratio to that of Earth-Sun system): <input type="Number" id="insol"></td></tr><br><br>
+          <tr><td>Model signal to noise ratio: <input type="Number" id="model_snr"></td></tr><br><br>
+      </table>
+      <div>
+          <button id="submit">Get prediction</button>
+      </div>
+      <br>
+      <br>
+        <font size="+2">Our prediction is:
+    <div>
+          This candidate is <b id="hard_predict"></b><br>
+          Probability of candidate being an exoplanet: <b id="soft_predict"></b>
+        </font>
+    </div>
+    </div>
+    <br>
+    <br>
+  </body>
+
+  <script>
+        $('#submit').click( () => { predict(); } );
+      
+        function predict(){
+            let features = {
+                'period': parseFloat($('#period').val()),
+                'impact': parseFloat($('#impact').val()),
+                'duration': parseFloat($('#duration').val()),
+                'depth': parseFloat($('#depth').val()),
+                'prad': parseFloat($('#prad').val()),
+                'teq': parseFloat($('#teq').val()),
+                'insol': parseFloat($('#insol').val()),
+                'model_snr': parseFloat($('#model_snr').val())
+            }
+    
+            console.log(features);
+    
+            $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/predict",  // Replace with URL of POST handler
+            dataType: "json",
+            async: true,
+            data: JSON.stringify(features),
+            success: (result) => {
+                $('#hard_predict').html(result['prediction'] ? '<b>an exoplanet</b>' : '<b>not an exoplanet</b>' );
+                $('#soft_predict').html(result['prob_planet']);
+            },
+            error: (result) => {
+                alert('An error occurred')
+            }
+            })
+    
+      }
+        </script>
+</html>
