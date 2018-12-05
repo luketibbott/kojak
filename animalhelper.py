@@ -4,6 +4,10 @@ import re
 import numpy as np
 import pandas as pd
 
+from imblearn.over_sampling import SMOTE
+
+from sklearn.model_selection import train_test_split
+
 dictionary_string = ''
 
 # Read dictionary string in from previously parsed file
@@ -217,4 +221,11 @@ def shade(s):
     return shade_mapper[s]
     
     
+def smote(X, y):
+    sm = SMOTE()
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y)
     
+    X_train_res, y_train_res = sm.fit_sample(X_train, y_train)
+    
+    return X_train_res, X_test, y_train_res, y_test
