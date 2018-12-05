@@ -14,7 +14,7 @@ example = {
     'intake_condition': 'Normal',
     'season': 'winter',
     'intake_type': 'Owner Surrender',
-    'hour_in': 11,
+    'hour': 11,
     'name': 'ajklsdfhkjlsahdf'
 }
 
@@ -24,7 +24,7 @@ def predict_animal(features):
     name_frequency = name_freqs[example['name']]
 
     X = np.array([features['age'], features['animal_type'], features['fixed'], features['group'], features['intake_condition'],
-                features['season'], features['intake_type'], features['hour_in'], name_frequency]).reshape(1, -1)
+                features['season'], features['intake_type'], features['hour'], name_frequency]).reshape(1, -1)
 
     prob_adoption = catboost.predict_proba(X)[0, 1]
 
