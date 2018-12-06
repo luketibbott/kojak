@@ -23,8 +23,6 @@
     <!-- Use navbar just as a visual divider -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     </nav>
-
-
     <!-- Main Content -->
     <div class="container">  
       <table>
@@ -34,14 +32,12 @@
                     <option value="Dog">Dog</option>
                 </select>
           </td></tr>
-          <br><br>
           <tr><td>How old is this animal in days?<input type="Number" id="age"></td></tr><br><br>
           <tr><td>Is this animal fixed or intact?
           <select id="fixed_status">
               <option value="Intact">Intact</option>
               <option value="Fixed">Fixed</option>
           </select></td></tr>
-          <br><br>
           <tr><td>Which of the following groups best describes this animal?
             <select id="group">
                 <option value="short hair">Short hair</option>
@@ -54,7 +50,6 @@
                 <option value="Non-Sporting">Non-Sporting</option>
                 <option value="long hair">Long hair</option>
             </select></td></tr>
-          <br><br>
           <tr><td>What condition best describes this animal?
             <select id="intake_condition">
               <option value="Normal">Normal</option>
@@ -62,7 +57,6 @@
               <option value="Injured">Injured</option>
               <option value="Nursing">Nursing</option>
           </select></td></tr>
-          <br><br>
           <tr><td>In what season will this animal be brought to the shelter?
               <select id="season">
                   <option value="spring">Spring</option>
@@ -71,14 +65,12 @@
                   <option value="summer">Summer</option>
               </select>
           </td></tr>
-          <br><br>
           <tr><td>Which of the following reasons best describes this animal's intake type?
               <select id="intake_type">
                 <option value="Stray">Stray</option>
                 <option value="Owner Surrender">I own this animal and am surrendering it</option>
                 <option value="Public Assist">Brought in as part of a public assistance program</option>
-              </select>></td></tr>
-              <br><br>
+              </select></td></tr>
           <tr><td>
                 What hour of the day will the animal be brought to the shelter?
                 <select id="hour">
@@ -107,7 +99,6 @@
                   <option value=22>22</option>
                   <option value=23>23</option>
               </select></td></tr>
-              <br><br>
             <tr><td>
                 If this animal has a name, type it here. If it doesn't have a name, type "No name".
                 <input type="Text" id="name">
@@ -118,10 +109,11 @@
       </div>
       <br>
       <br>
-        <font size="+2">Our prediction is:
-    <div>
-          This candidate is <b id="hard_predict"></b><br>
-          Probability of candidate being an exoplanet: <b id="soft_predict"></b>
+      <div>
+        <font size="+2">My prediction is:
+          This will <b id="hard_predict"></b>
+          <br>
+          Probability of adoption: <b id="soft_predict"></b>
         </font>
     </div>
     </div>
@@ -165,8 +157,8 @@
             async: true,
             data: JSON.stringify(features),
             success: (result) => {
-                $('#hard_predict').html(result['prediction'] ? '<b>Adopted</b>' : '<b>Not adopted</b>' );
-                $('#soft_predict').html(result['prob_planet']);
+                $('#hard_predict').html(result['prediction'] ? '<b>be adopted</b>' : '<b>not be adopted</b>' );
+                $('#soft_predict').html(result['prob_adoption']);
             },
             error: (result) => {
                 alert('An error occurred')
