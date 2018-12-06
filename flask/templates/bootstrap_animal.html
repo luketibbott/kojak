@@ -111,9 +111,12 @@
       <br>
       <div>
         <font size="+2">My prediction is:
-          This will <b id="hard_predict"></b>
+          This animal will <b id="hard_predict"></b>
           <br>
           Probability of adoption: <b id="soft_predict"></b>
+          <br>
+          By changing this animal's name to <b id="suggested_name"></b> the probability of adoption increases to
+          <b id="suggested_prob"></b>, a difference of <b id="difference"></b>!
         </font>
     </div>
     </div>
@@ -136,7 +139,7 @@
             var name = document.getElementById('name')
 
             let features = {
-                'age': age.value,
+                'age': parseInt(age.value),
                 'animal_type': animal_type.value,
                 'fixed': fixed_status.value,
                 'group': group.value,
@@ -159,6 +162,9 @@
             success: (result) => {
                 $('#hard_predict').html(result['prediction'] ? '<b>be adopted</b>' : '<b>not be adopted</b>' );
                 $('#soft_predict').html(result['prob_adoption']);
+                $('#suggested_name').html(result['suggested_name']);
+                $('#suggested_prob').html(result['suggested_probability']);
+                $('#difference').html(result['difference']);
             },
             error: (result) => {
                 alert('An error occurred')
