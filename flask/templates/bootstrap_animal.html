@@ -109,7 +109,7 @@
       </div>
       <br>
       <br>
-      <div>
+      <div id="predictions", style="display:none">
         <font size="+2">My prediction is:
           This animal will <b id="hard_predict"></b>
           <br>
@@ -125,7 +125,15 @@
   </body>
 
   <script>
-        $('#submit').click( () => { predict(); } );
+       $('#submit').click( () => { predict(); } );
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function showPreds(){
+            document.getElementById("predictions").style.display = "block";
+        }
       
         function predict(){
             var animal_type = document.getElementById('animal_type')
@@ -170,7 +178,8 @@
                 alert('An error occurred')
             }
             })
-    
+        sleep(3000)
+        showPreds();
       }
         </script>
 </html>

@@ -33,24 +33,34 @@ def predict_animal(features):
 
     for n in name_freqs.keys():
         new_name_freq = name_freqs[n]
+
         new_X = np.array([features['age'], features['animal_type'], features['fixed'], features['group'], features['intake_condition'],
                 features['season'], features['intake_type'], features['hour'], new_name_freq]).reshape(1, -1)
+
         new_prob = catboost.predict_proba(new_X)[0, 1]
         if new_prob > highest_prob:
             best_names = [n]
             highest_prob = new_prob
+
         elif new_prob == highest_prob:
             best_names.append(n)
             highest_prob = new_prob
 
-    suggested_name = random.choice(best_names)
-    difference = highest_prob - prob_adoption
+    if len(best_names) != 0:
+        suggested_name = random.choice(best_names)
+        difference = highest_prob - prob_adoption
+
+    else:
+        suggested_name = 'name cannot be improved'
+        highest_prob = 0
+        difference = 0
+
 
     result = {'prediction': int(prob_adoption > 0.5),
-              'prob_adoption': prob_adoption,
+              'prob_adoption': round(prob_adoption, 2),
               'suggested_name': suggested_name,
-              'suggested_probability': highest_prob,
-              'difference': difference
+              'suggested_probability': round(highest_prob, 2),
+              'difference': round(difference, 2)
     }
 
     return result
