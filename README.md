@@ -5,13 +5,21 @@ This is the repository for a project that predicts shelter animal outcomes.
 ## Notebooks
 
 animal-eda.ipynb - initial EDA of data
+
 clean-engineer.ipynb - Cleaning and feature engineering
+
 MVP.ipynb - MVP of multiclass model
+
 Model.ipynb -- Random Forest and XGBoost versions of model
+
 Categoricals.ipynb -- Create dummy-variable and non-dummy-variable versions of data
+
 Catboost.ipynb -- Catboost modeling (using non-dummy-variable version of data)
+
 feature-playground.ipynb -- Experiment with adding and removing features to lessen Catboost model complexity
+
 name-frequency.ipynb -- Create name frequency Counter object that maps each name in dataset to frequency of that name
+
 re-clean.ipynb -- Re-clean all data to ensure mistake wasn't made in cleaning
 
 ## Files
